@@ -1,0 +1,22 @@
+def count_arithmetic_subarrays(nums):
+    def is_arithmetic(arr):
+        if len(arr) < 3:
+            return False
+        diff = arr[1] - arr[0]
+        for i in range(2, len(arr)):
+            if arr[i] - arr[i-1] != diff:
+                return False
+        return True
+    
+    count = 0
+    for i in range(len(nums)):
+        for j in range(i + 2, len(nums)):
+            if is_arithmetic(nums[i:j+1]):
+                count += 1
+            else:
+                break
+    return count
+
+# Example usage:
+nums = [1, 2, 3, 4]
+print(count_arithmetic_subarrays(nums))  # Output: 6
